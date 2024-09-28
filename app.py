@@ -30,6 +30,9 @@ def display_data():
                            temperature=latest_data["temperature"],
                            humidity=latest_data["humidity"])
 
+def new_func():
+    pass
+
 if __name__ == '__main__':
     app.run(debug=True)
 
