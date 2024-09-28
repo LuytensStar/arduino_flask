@@ -1,4 +1,4 @@
-English Version
+English Version  
 /render_endpoint (POST)
 Description: This endpoint receives JSON data with temperature and humidity values, processes it, and updates the global latest_data dictionary with the latest values.
 Request Type: POST
