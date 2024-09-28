@@ -15,6 +15,8 @@ Response: {"message": "No data received"}
 Description: This endpoint renders an HTML page that displays the latest temperature and humidity values, which are updated by the /render_endpoint route.  
 Request Type: GET  
 Response: Renders the index.html page with the latest data for temperature and humidity passed as variables to the template.  
+
+    
 Ukrainian Version  
 /render_endpoint (POST)  
 Опис: Цей маршрут приймає JSON дані з показниками температури та вологості, обробляє їх і оновлює глобальний словник latest_data новими значеннями.  
