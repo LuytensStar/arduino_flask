@@ -9,6 +9,9 @@ client = MongoClient(uri)
 db = client['ImageCluster']
 collection = db['TempCollection']
 
+counter = 0
+limit = 100
+
 latest_data = {
     "temperature": None,
     "humidity": None
@@ -16,7 +19,7 @@ latest_data = {
 
 @app.route('/render_endpoint', methods=['POST'])
 def receive_data():
-    global latest_data
+    global latest_data,counter
     data = request.get_json()
     if data:
         temperature = data.get('temperature')
@@ -26,11 +29,15 @@ def receive_data():
             "humidity": humidity
         }
 
-        temperature_data = {"type": "temperature", "value": temperature}
-        humidity_data = {"type": "humidity", "value": humidity}
+        counter+=1
+        if counter>=limit:
+            temperature_data = {"type": "temperature", "value": temperature}
+            humidity_data = {"type": "humidity", "value": humidity}
 
-        collection.insert_one(temperature_data)
-        collection.insert_one(humidity_data)
+            collection.insert_one(temperature_data)
+            collection.insert_one(humidity_data)
+
+            counter=0
 
         print(f"Received data: Temperature={temperature}, Humidity={humidity}")
         return jsonify({"message": "Data received"}), 200
