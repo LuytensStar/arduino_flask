@@ -2,6 +2,7 @@ import os
 
 from flask import Flask, request, jsonify,render_template
 from pymongo import MongoClient
+from datetime import datetime
 app = Flask(__name__)
 
 uri = os.getenv("MONGO_URI")
@@ -26,7 +27,8 @@ def receive_data():
         humidity = data.get('humidity')
         latest_data = {
             "temperature": temperature,
-            "humidity": humidity
+            "humidity": humidity,
+            "created_at": datetime.utcnow()
         }
 
         counter+=1
