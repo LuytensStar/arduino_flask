@@ -18,6 +18,11 @@ latest_data = {
     "humidity": None
 }
 
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+
 @app.route('/render_endpoint', methods=['POST'])
 def receive_data():
     global latest_data,counter
