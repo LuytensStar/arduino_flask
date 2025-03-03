@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 uri = os.getenv("MONGO_URI")
 client = MongoClient(uri)
-db = client['ImageCluster']
-collection = db['TempCollection']
+db = client[os.getenv("MONGO_CLUSTER")]
+collection = db[os.getenv("MONGO_COLLECTION")]
 
 counter = 0
 limit = 100
